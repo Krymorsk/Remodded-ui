@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#171311">
+  <meta name="description" content="FORM — an offline-first follow-along fitness coach.">
+  <title>FORM — Fitness Coach</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="bg-orb orb-a"></div><div class="bg-orb orb-b"></div>
+
+  <main class="app">
+    <header class="header">
+      <div>
+        <div class="brand">FORM</div>
+        <div class="tagline">DISCIPLINE SHAPES YOU</div>
+      </div>
+      <button class="profile" id="profileBtn" aria-label="Open profile">
+        <span class="avatar">A</span>
+        <span><b>Hi Arish</b><small>Keep going <i></i></small></span>
+      </button>
+    </header>
+
+    <div class="page" id="pageHome">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">TODAY · <span id="dayLabel">—</span></div>
+          <h1 id="heroTitle">A Better<br>You, Today.</h1>
+          <p id="heroText">Small steps. Consistent effort. Big results.</p>
+        </div>
+        <div class="hero-figure" aria-hidden="true">
+          <div class="figure-head"></div><div class="figure-body"></div>
+          <div class="figure-arm left"></div><div class="figure-arm right"></div>
+        </div>
+        <div class="hero-quote">“Progress over perfection.”</div>
+      </section>
+
+      <section class="quick-grid">
+        <button class="quick active" data-action="workout"><span>◒</span><b>Workout</b></button>
+        <button class="quick" data-action="nutrition"><span>◉</span><b>Nutrition</b></button>
+        <button class="quick" data-action="habits"><span>✦</span><b>Habits</b></button>
+        <button class="quick" data-action="journal"><span>▤</span><b>Journal</b></button>
+      </section>
+
+      <section class="card plan-card">
+        <div class="card-head"><h2>Today's Plan</h2><button class="text-btn" data-action="workout">View workout</button></div>
+        <div class="plan-row">
+          <div class="plan-thumb"><span>FORM</span></div>
+          <div class="plan-copy"><h3 id="planTitle">Push Day</h3><p id="planSubtitle">Chest · Shoulders · Triceps</p>
+            <div class="meta"><span>◷ <b id="planMinutes">45</b> min</span><span>🔥 ~<b id="planKcal">320</b> kcal</span></div>
+          </div>
+        </div>
+        <button class="primary" id="startPlan">▶ Start Workout</button>
+      </section>
+
+      <section class="stats-grid">
+        <div class="mini-stat"><span>🔥</span><small>Streak</small><strong id="dashStreak">0 days</strong><em id="dashStreakHint">Start today</em></div>
+        <div class="mini-stat"><span>⚖</span><small>Weight</small><strong id="dashWeight">—</strong><em id="dashWeightHint">Add weight</em></div>
+        <div class="mini-stat"><span>✓</span><small>Workouts</small><strong id="dashWorkouts">0</strong><em>all time</em></div>
+      </section>
+
+      <section class="card progress-card">
+        <div class="card-head"><h2>Progress</h2><button class="chip" data-action="progress">VIEW</button></div>
+        <div class="progress-line"><div><strong id="homeProgress">0%</strong><span>weekly consistency</span></div><div class="mini-ring" id="homeRing"><i></i></div></div>
+        <div class="sparkline"><svg viewBox="0 0 600 100" preserveAspectRatio="none"><path id="spark" d="M0 82 C80 80 90 72 150 70 S250 78 310 58 S430 52 500 38 S560 31 600 20"></path></svg></div>
+      </section>
+    </div>
+
+    <div class="page hidden" id="pageWorkout">
+      <section class="page-title"><div><div class="eyebrow">TRAINING</div><h2>Workout</h2><p id="workoutSubtitle">Push Day · follow the plan.</p></div><button class="ghost-icon" id="addQuickBtn">＋</button></section>
+      <div class="card workout-summary">
+        <div><span class="eyebrow">TODAY</span><h3 id="workoutPlanName">Push Day</h3><p>3 exercises · progressive but controlled</p></div>
+        <div class="summary-score"><strong id="sessionDone">0/3</strong><span>done</span></div>
+      </div>
+      <div class="exercise-list" id="exerciseList"></div>
+    </div>
+
+    <div class="page hidden" id="pageProgress">
+      <section class="page-title"><div><div class="eyebrow">YOUR DATA</div><h2>Progress</h2><p>Stored privately in this browser.</p></div><button class="primary small" id="addWeightBtn">＋ Weight</button></section>
+      <section class="card big-number"><div><span>Current weight</span><strong id="progressWeight">—</strong><em id="progressChange">No history yet</em></div></section>
+      <section class="card">
+        <div class="card-head"><h2>Weight trend</h2><span class="chip">30 DAYS</span></div>
+        <div class="chart"><svg viewBox="0 0 600 220" preserveAspectRatio="none"><path id="weightArea"></path><path id="weightLine"></path></svg></div>
+        <div class="chart-labels"><span>Oldest</span><span>Today</span></div>
+      </section>
+      <section class="stats-grid">
+        <div class="mini-stat"><span>🏋</span><small>This month</small><strong id="progressWorkouts">0</strong><em>workouts</em></div>
+        <div class="mini-stat"><span>🔥</span><small>Best streak</small><strong id="progressBestStreak">0</strong><em>days</em></div>
+        <div class="mini-stat"><span>⏱</span><small>Training</small><strong id="progressMinutes">0m</strong><em>logged</em></div>
+      </section>
+    </div>
+
+    <div class="page hidden" id="pageMore">
+      <section class="page-title"><div><div class="eyebrow">FORM</div><h2>More</h2><p>Your preferences and data.</p></div></section>
+      <section class="card settings">
+        <button class="setting" id="modeBtn"><span><b>Training mode</b><small id="modeValue">Normal</small></span><span>›</span></button>
+        <button class="setting" id="heightBtn"><span><b>Height</b><small id="heightValue">Not set</small></span><span>›</span></button>
+        <button class="setting" id="resetBtn"><span><b>Reset data</b><small>Clear local FORM history</small></span><span>›</span></button>
+      </section>
+      <section class="card about"><div class="eyebrow">OFFLINE-FIRST</div><h3>Train. Rest. Improve.</h3><p>FORM saves workouts, weight and preferences in your browser. No account or backend is required for this static build.</p></section>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav active" data-page="home"><span>⌂</span><small>Home</small></button>
+    <button class="nav" data-page="workout"><span>♢</span><small>Workout</small></button>
+    <button class="nav" data-page="progress"><span>▥</span><small>Progress</small></button>
+    <button class="nav" data-page="more"><span>•••</span><small>More</small></button>
+  </nav>
+
+  <dialog id="weightDialog" class="dialog">
+    <form method="dialog" id="weightForm"><button class="close" value="cancel">×</button><div class="eyebrow">PROGRESS</div><h2>Log weight</h2>
+      <label>Weight (kg)<input id="weightInput" type="number" min="20" max="300" step="0.1" required></label>
+      <menu><button value="cancel" class="secondary">Cancel</button><button value="default" class="primary">Save</button></menu>
+    </form>
+  </dialog>
+
+  <dialog id="heightDialog" class="dialog">
+    <form method="dialog" id="heightForm"><button class="close" value="cancel">×</button><div class="eyebrow">PROFILE</div><h2>Your height</h2>
+      <label>Height (cm)<input id="heightInput" type="number" min="100" max="230" step="1" required></label>
+      <menu><button value="cancel" class="secondary">Cancel</button><button value="default" class="primary">Save</button></menu>
+    </form>
+  </dialog>
+
+  <dialog id="modeDialog" class="dialog">
+    <form method="dialog"><button class="close" value="cancel">×</button><div class="eyebrow">TRAINING MODE</div><h2>Choose your mode</h2>
+      <div class="mode-options">
+        <button type="button" class="mode-option" data-mode="normal"><b>Normal</b><span>Balanced consistency</span></button>
+        <button type="button" class="mode-option" data-mode="bulk"><b>Bulk</b><span>Size & strength</span></button>
+        <button type="button" class="mode-option" data-mode="comeback"><b>Comeback</b><span>Rebuild capacity</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="sessionDialog" class="dialog session">
+    <div class="session-head"><div><div class="eyebrow" id="sessionKicker">PUSH DAY · 1/3</div><h2 id="sessionExercise">Bench Press</h2><p id="sessionMuscle">Chest</p></div><button class="close" id="closeSession">×</button></div>
+    <div class="exercise-visual"><div class="visual-bar"></div><div class="visual-plate one"></div><div class="visual-plate two"></div><div class="visual-bench"></div></div>
+    <div class="session-controls"><button class="round" id="minusWeight">−</button><div><strong id="sessionWeight">60</strong><span>kg</span></div><button class="round" id="plusWeight">＋</button></div>
+    <div class="rep-row"><div><span>SETS</span><strong id="sessionSets">3</strong></div><div><span>REPS</span><strong id="sessionReps">10</strong></div><div><span>REST</span><strong>80s</strong></div></div>
+    <button class="primary" id="completeSet">✓ Mark set complete</button>
+    <div class="rest-area hidden" id="restArea"><div class="rest-ring"><span>REST</span><strong id="restTimer">01:20</strong></div><div class="rest-actions"><button class="secondary" id="skipRest">Skip</button><button class="secondary" id="pauseRest">Pause</button></div></div>
+  </dialog>
+
+  <script src="./app.js"></script>
+</body>
+</html>
